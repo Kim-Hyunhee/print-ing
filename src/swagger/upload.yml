@@ -1,0 +1,57 @@
+paths:
+  /admin/upload/products:
+    post:
+      tags:
+        - adminUpload
+      summary: 상품 이미지 등록
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: image upload success
+
+/upload/orders:
+  post:
+    tags:
+      - upload
+    summary: 주문 상품 이미지 등록
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+    responses:
+      "200":
+        description: image upload success
+
+/admin/upload/banners:
+  post:
+    tags:
+      - adminUpload
+    summary: 배너 이미지 등록
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+    responses:
+      "200":
+        description: image upload success

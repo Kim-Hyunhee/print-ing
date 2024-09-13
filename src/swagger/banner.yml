@@ -1,0 +1,77 @@
+paths:
+  /admin/banners:
+    post:
+      tags:
+        - adminBanner
+      summary: 배너 등록
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                position:
+                  type: integer
+                image:
+                  type: string
+                link:
+                  type: string
+      responses:
+        "200":
+          description: create banner success
+
+    get:
+      tags:
+        - adminBanner
+      summary: 배너 목록
+      responses:
+        "200":
+          description: get banner list success
+
+  /admin/banners/{id}:
+    put:
+      tags:
+        - adminBanner
+      summary: 배너 수정
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                position:
+                  type: integer
+                image:
+                  type: string
+                link:
+                  type: string
+      responses:
+        "200":
+          description: create banner success
+
+    delete:
+      tags:
+        - adminBanner
+      summary: 배너 삭제
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: delete banner success
+
+  /banners:
+    get:
+      tags:
+        - banner
+      summary: 배너 목록
+      responses:
+        "200":
+          description: get banner list success

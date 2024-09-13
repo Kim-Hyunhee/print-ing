@@ -1,0 +1,30 @@
+paths:
+  /admin/shipment:
+    put:
+      tags:
+        - shipment
+      summary: 배송 시작/완료 날짜
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                invoiceNumber:
+                  type: string
+                courierName:
+                  type: string
+                orderId:
+                  type: integer
+                deliveryStartDate:
+                  type: string
+                  format: date
+                deliveryCompleteDate:
+                  type: string
+                  format: date
+                status:
+                  schema:
+                  type: string
+                  enum: [결제완료, 제작중, 취소완료, 환불완료, 배송중, 배송완료]
+      responses:
+        "200":
+          description: 완료

@@ -1,0 +1,9 @@
+paths:
+  /refundAccounts:
+    get:
+      tags:
+        - refundAccount
+      summary: 최근 환불 계좌
+      responses:
+        "200":
+          description: refund account list

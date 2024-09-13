@@ -1,0 +1,19 @@
+paths:
+  /payments/complete:
+    patch:
+      tags:
+        - iamport
+      summary: 결제
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                imp_uid:
+                  type: string
+                merchant_uid:
+                  type: string
+      responses:
+        "200":
+          description: couriers get success

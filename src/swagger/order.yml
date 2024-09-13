@@ -1,0 +1,192 @@
+paths:
+  /orders:
+    post:
+      tags:
+        - order
+      summary: 주문 등록
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                orderProducts:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/orderProduct"
+      responses:
+        "200":
+          description: order create success
+
+    get:
+      tags:
+        - order
+      summary: 주문 목록
+      parameters:
+        - in: query
+          name: status
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: order list get success
+
+  /orders/{orderNumber}:
+    get:
+      tags:
+        - order
+      summary: 주문 상세 보기
+      parameters:
+        - in: path
+          name: orderNumber
+          type: string
+          required: true
+      responses:
+        "200":
+          description: order get success
+
+    put:
+      tags:
+        - order
+      summary: 주문 등록
+      parameters:
+        - in: path
+          name: orderNumber
+          type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                payMethod:
+                  schema:
+                  type: string
+                  enum: [creditCard, bankTransfer]
+                isSaveShippingAddress:
+                  type: boolean
+                shippingAddressId:
+                  type: integer
+                refundInfo:
+                  items:
+                    $ref: "#/components/schemas/refundInfo"
+                shippingAddress:
+                  items:
+                    $ref: "#/components/schemas/shippingAddress"
+      responses:
+        "200":
+          description: order create success
+
+  /orders/stand-by:
+    get:
+      tags:
+        - order
+      summary: 주문 대기 중 최근 1개 상세보기
+      parameters:
+        - in: query
+          name: orderNumber
+          type: string
+          required: true
+      responses:
+        "200":
+          description: order get success
+
+  /admin/orders:
+    get:
+      tags:
+        - adminOrder
+      summary: 주문 목록
+      parameters:
+        - in: query
+          name: status
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: keyword
+          type: string
+        - in: query
+          name: page
+          type: integer
+      responses:
+        "200":
+          description: order list get success
+
+  /admin/orders/{id}:
+    get:
+      tags:
+        - adminOrder
+      summary: 주문 상세보기
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: order list get success
+
+  /admin/orders/{id}/isRefund:
+    patch:
+      tags:
+        - adminOrder
+      summary: 환급 여부 버튼
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                isRefund:
+                  type: boolean
+      responses:
+        "200":
+          description: order Refund Change Successful
+
+components:
+  schemas:
+    orderProduct:
+      type: object
+      properties:
+        productId:
+          type: integer
+        amount:
+          type: integer
+        image:
+          type: string
+          required: false
+    shippingAddress:
+      type: object
+      properties:
+        shippingAddressName:
+          type: string
+        address:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        message:
+          type: string
+        phoneNumber:
+          type: string
+        zipCode:
+          type: string
+    refundInfo:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        holder:
+          type: string
+        bankId:
+          type: integer

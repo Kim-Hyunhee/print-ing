@@ -1,0 +1,62 @@
+paths:
+  /admin/categories:
+    post:
+      tags:
+        - adminCategory
+      summary: 카테고리 생성
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+      responses:
+        "200":
+          description: category create success
+
+    get:
+      tags:
+        - adminCategory
+      summary: 카테고리 목록
+      responses:
+        "200":
+          description: category list get success
+
+  /admin/categories/{id}:
+    get:
+      tags:
+        - adminCategory
+      summary: 카테고리 목록
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: category get success
+
+  /categories:
+    get:
+      tags:
+        - category
+      summary: 카테고리 목록
+      responses:
+        "200":
+          description: category get success
+
+  /categories/{id}:
+    get:
+      tags:
+        - category
+      summary: 카테고리 상세보기
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: category get success

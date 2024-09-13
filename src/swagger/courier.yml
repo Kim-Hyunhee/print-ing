@@ -1,0 +1,9 @@
+paths:
+  /admin/couriers:
+    get:
+      tags:
+        - adminCourier
+      summary: 택배사 목록
+      responses:
+        "200":
+          description: couriers get success

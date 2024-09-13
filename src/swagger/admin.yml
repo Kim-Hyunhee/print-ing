@@ -1,0 +1,33 @@
+paths:
+  /admin/auth/logIn:
+    post:
+      tags:
+        - adminAuth
+      summary: 관리자 로그인
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: admin log in success
+
+  /admin/users:
+    get:
+      tags:
+        - adminAuth
+      summary: 사용자 정보 조회
+      parameters:
+        - in: query
+          name: page
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: get user information success

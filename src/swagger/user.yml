@@ -1,0 +1,79 @@
+paths:
+  /auth/signUp:
+    post:
+      tags:
+        - auth
+      summary: 회원 가입
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                phoneNumber:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: users sign up success
+
+  /auth/logIn:
+    post:
+      tags:
+        - auth
+      summary: 사용자 로그인
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                  default: "tester@test.com"
+                password:
+                  type: string
+                  default: "Test!123"
+      responses:
+        "200":
+          description: users log in success
+
+  /auth/logOut:
+    delete:
+      tags:
+        - auth
+      summary: 사용자 로그아웃
+      responses:
+        "200":
+          description: users log out success
+
+  /auth/information:
+    get:
+      tags:
+        - auth
+      summary: 사용자 정보 조회
+      responses:
+        "200":
+          description: my information
+
+  /auth/logIn/kakao:
+    post:
+      tags:
+        - auth
+      summary: 카카오 로그인
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                code:
+                  type: string
+      responses:
+        "200":
+          description: my information

@@ -1,0 +1,75 @@
+paths:
+  /admin/productPrice/{id}:
+    put:
+      tags:
+        - productPrice
+      summary: 상품 금액 수정
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                price:
+                  type: integer
+                amount:
+                  type: integer
+                discountRate:
+                  type: integer
+      responses:
+        "200":
+          description: product price edit success
+
+    delete:
+      tags:
+        - productPrice
+      summary: 상품 금액 삭제
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: product price delete success
+
+  /admin/productPrice/{productId}:
+    post:
+      tags:
+        - productPrice
+      summary: 상품 금액 등록
+      parameters:
+        - in: path
+          name: productId
+          type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                price:
+                  type: integer
+                amount:
+                  type: integer
+                discountRate:
+                  type: integer
+      responses:
+        "200":
+          description: product price create success
+
+components:
+  schemas:
+    price:
+      type: object
+      properties:
+        discountedPrice:
+          type: integer
+        amount:
+          type: integer
+        discountRate:
+          type: integer

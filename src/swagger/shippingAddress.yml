@@ -1,0 +1,9 @@
+paths:
+  /shippingAddress:
+    get:
+      tags:
+        - ShippingAddress
+      summary: 배송지 목록
+      responses:
+        "200":
+          description: ShippingAddress list

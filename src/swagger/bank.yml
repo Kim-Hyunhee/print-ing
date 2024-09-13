@@ -1,0 +1,9 @@
+paths:
+  /banks:
+    get:
+      tags:
+        - bank
+      summary: 은행 목록
+      responses:
+        "200":
+          description: bank list

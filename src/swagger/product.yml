@@ -1,0 +1,215 @@
+paths:
+  /admin/products:
+    post:
+      tags:
+        - adminProduct
+      summary: 상품 등록
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                categoryId:
+                  type: integer
+                name:
+                  type: string
+                price:
+                  type: integer
+                productionPeriod:
+                  type: integer
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+                status:
+                  type: array
+                  items:
+                    type: string
+                  example: ["예정", "진행중", "마감"]
+                isShow:
+                  type: integer
+                guideLine:
+                  type: string
+                guideLineFile:
+                  type: string
+                detailImages:
+                  type: array
+                  items:
+                    type: string
+                bannerImages:
+                  type: array
+                  items:
+                    type: string
+                thumbnail:
+                  type: string
+                allAmount:
+                  type: integer
+                minAmount:
+                  type: integer
+                limitAmount:
+                  type: integer
+                isNoLimit:
+                  type: boolean
+                type:
+                  type: string
+                metatagTitle:
+                  type: string
+                metatagThumbnail:
+                  type: string
+                metatagExplain:
+                  type: string
+                isImage:
+                  type: boolean
+                multiple:
+                  type: integer
+      responses:
+        "200":
+          description: product create success
+
+    get:
+      tags:
+        - adminProduct
+      summary: 상품 목록
+      parameters:
+        - in: query
+          name: status
+          type: string
+      responses:
+        "200":
+          description: product list get success
+
+  /admin/products/{id}:
+    get:
+      tags:
+        - adminProduct
+      summary: 상품 상세보기
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: product get success
+
+    put:
+      tags:
+        - adminProduct
+      summary: 상품 수정
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                categoryId:
+                  type: integer
+                name:
+                  type: string
+                price:
+                  type: integer
+                productionPeriod:
+                  type: integer
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+                status:
+                  type: array
+                  items:
+                    type: string
+                  example: ["예정", "진행중", "마감"]
+                isShow:
+                  type: integer
+                guideLine:
+                  type: string
+                guideLineFile:
+                  type: string
+                detailImages:
+                  type: array
+                  items:
+                    type: string
+                bannerImages:
+                  type: array
+                  items:
+                    type: string
+                thumbnail:
+                  type: string
+                allAmount:
+                  type: integer
+                minAmount:
+                  type: integer
+                limitAmount:
+                  type: integer
+                type:
+                  type: string
+                metaTitle:
+                  type: string
+                metaThumbnail:
+                  type: string
+                metaDescription:
+                  type: string
+                isImage:
+                  type: boolean
+                multiple:
+                  type: integer
+      responses:
+        "200":
+          description: product edit success
+
+  /products:
+    get:
+      tags:
+        - product
+      summary: 상품 목록
+      parameters:
+        - in: query
+          name: status
+          type: string
+      responses:
+        "200":
+          description: product list get success
+
+  /products/{id}:
+    get:
+      tags:
+        - product
+      summary: 상품 상세보기
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: product get success
+
+  /admin/products/{id}/isShow:
+    patch:
+      tags:
+        - adminProduct
+      summary: 상품 숨기기(is Show)
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                isShow:
+                  type: integer
+      responses:
+        "200":
+          description: product is show edit success
